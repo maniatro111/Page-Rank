@@ -1,0 +1,55 @@
+Functia Iterative:
+
+-deschid fisierul de input
+-citesc numarul de pagini de analizat si fac initializarile
+(pentru matricea de adiacenta si matricea diagonala)
+-pentru fiecare pagina citesc indicele ei (cu care nu fac nimic, notat dump), apoi citesc numarul de pagini vecine si in cele din urma citesc lista de indici de pagini vecine. Marchez corespunzator in matricea de adiacenta ( 1 in caz ca exista o legatura intre doua site-uri si 0 in caz contrar (exceptand legatura dintre un site si el insusi))
+-dupa citirea legaturilor dintre pagini si crearea matricei de adiacenta modific diagonala principala si o umplu de zerouri. De asemenea calcuzez si cate link-uri sunt pe fiecare pagina, pentru a putea aplica algoritmul de Page Rank.
+-calculez matricea de rotatie(Mat_caciula), ca fiind produsul dintre matricea diagonala K(ce contine inversul numarului de link-uri de pe un site) si mat(matricea de adiacenta), totul transpus.
+-initializez elementele celor doi vectori de iteratie (elementele primului vector cu infinit si elementele celui de-al doilea vector cu 1/n)
+-calculez vectorul de rank-uri, dupa formula din documentatie, pana cand eroarea dintre vectorul calculat la pasul anterior si cel actual este mai mica decat eps
+
+Functia Algebraic:
+
+-deschid fisierul de input
+-citesc numarul de pagini de analizat si fac initializarile
+(pentru matricea de adiacenta si matricea diagonala)
+-pentru fiecare pagina citesc indicele ei (cu care nu fac nimic, notat dump), apoi citesc numarul de pagini vecine si in cele din urma citesc lista de indici de pagini vecine. Marchez corespunzator in matricea de adiacenta ( 1 in caz ca exista o legatura intre doua site-uri si 0 in caz contrar (exceptand legatura dintre un site si el insusi))
+-dupa citirea legaturilor dintre pagini si crearea matricei de adiacenta modific diagonala principala si o umplu de zerouri. De asemenea calcuzez si cate link-uri sunt pe fiecare pagina, pentru a putea aplica algoritmul de Page Rank.
+-calculez matricea de rotatie(Mat_caciula), ca fiind produsul dintre matricea diagonala K(ce contine inversul numarului de link-uri de pe un site) si mat(matricea de adiacenta), totul transpus.
+-calculez, conform documentatiei de pe wikipedia, inversa matricei In-d*Mat_caciula, cu ajutorul functiei PR_INV
+-calculez, vectorul de Rank-uri, dupa formula din documentatie
+
+Functia PageRank:
+
+-citesc aceleasi detalii in acelasi mod ca in functiile de mai sus, pentru a ajunge la cei 2 parametri de la sfarsitul fisierului (val1 si val2)
+-calculez vectorul de rank-uri prin metoda Iterative
+-calculez vectorul de rank-uri prin metoda Algebraic
+-calculez matricea clasament cu ajutorul functiei Apartenenta
+-afisez numarul de pagini, cei doi vectori si clasamentul cu formatul cerut
+
+Functia Apartenta:
+
+-functia primeste vectorul de rank-uri, calculat prin metoda Algebraic si val1 si val2
+-functia returneaza o matrice de n linii si 2 coloane
+-prima coloana reprezinta indicii rank-urilor din coloana 2
+-calculez a si b, coeficientii ecuatiei ax+b;
+-initializez prima coloana din matrice, cu valori de la 1, pana la n
+-copiez vectorul de rank-uri in a doua coloana a matricei
+-sortez liniile matricei, dupa valoarea din coloana a doua
+-pentru fiecare valoare din coloana a doua, calculez F de acea valoare (functie prezentata in enuntul temei)
+
+Functia PR_Inv:
+
+-luat din cursul de MN (algoritmul Gram-Schmidt)
+-obtin matricile Q(matrice ortonormata) si R(matrice suerior triunghiulara) prin aplicarea algoritmului Gram_Schmidt optimizat pe matricea A
+-Inmultesc In cu Q transpus pentru a obtine solutia sistemului R*A^-1 (salvata in cod cu X)
+-aplic functia SST pentru a afla A^-1 (deoarece matricea R este superior triunghiulara)
+
+Functia SST:
+
+-inspirata din laboratorul de MN pentru un vector coloana 
+-Aflu solutia sistemului, folosing algoritmul de rezolvare al sistemelor superior triunghiulare
+
+Readme realizat de: Postolache Florin
+
